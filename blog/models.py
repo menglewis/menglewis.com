@@ -4,9 +4,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Post(models.Model):
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    updated = models.DateTimeField(auto_now=True, editable=False)
+class TimeStampedModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
+
+    class Meta:
+        abstract = True
+
+class Post(TimeStampedModel):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, blank=True, default='')
     content = models.TextField()
@@ -25,6 +30,5 @@ class Post(models.Model):
     def get_absolute_url(self):
         return ("blog:detail", (), {"slug": self.slug})
 
-
     class Meta:
-        ordering = ["-created", "title"]
+        ordering = ["-created_at", "title"]
