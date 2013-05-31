@@ -32,3 +32,14 @@ class Post(TimeStampedModel):
 
     class Meta:
         ordering = ["-created_at", "title"]
+
+class Comment(TimeStampedModel):
+    content = models.TextField()
+    author = models.ForeignKey(User, related_name='comments')
+    post = models.ForeignKey(Post)
+
+    def __unicode__(self):
+        return self.content[0:20]
+
+    class Meta:
+        ordering = ["created_at"]

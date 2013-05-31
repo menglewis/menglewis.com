@@ -9,10 +9,10 @@ class PublishedPostsMixin(object):
         return queryset.filter(published=True)
 
 class BlogListView(PublishedPostsMixin, ListView):
-	model = Post
-	template_name = "post_list.html"
+    model = Post
+    template_name = "post_list.html"
 
 
 class BlogDetailView(PublishedPostsMixin, DetailView):
-	model = Post
-	template_name = "post_detail.html"
+    model = Post
+    template_name = "post_detail.html"
