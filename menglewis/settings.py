@@ -1,6 +1,7 @@
 # Django settings for menglewis project.
 import os
 from os import path
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 PROJECT_DIR = path.abspath(path.dirname(__file__))
 PROJECT_ROOT = path.realpath(path.join(PROJECT_DIR, '..'))
@@ -120,6 +121,16 @@ TEMPLATE_DIRS = (
     path.join(PROJECT_ROOT, 'templates'),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
+)
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Menglewis Admin',
+    'SHOW_REQUIRED_ASTERISK': True,
+    'LIST_PER_PAGE': 20
+}
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,6 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'suit',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -139,7 +151,7 @@ INSTALLED_APPS = (
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
+# more details on how to custhttp://www.reddit.com/r/AskReddit/comments/1j1q81/teachers_of_reddit_have_you_ever_accidentally/omize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
